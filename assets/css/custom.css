@@ -1,0 +1,8 @@
+/**
+ * All your custom CSS should go into this file
+ */
+
+body {
+   padding-top: 15px;
+   background-image: url('../img/noise.png');
+}
