@@ -9,7 +9,6 @@
  * @link http://aws.amazon.com/php/ PHP Developer Center
  * @link http://aws.amazon.com/security-credentials AWS Security Credentials
  */
-exit('test');
 
 /*###################################################################################################
 
@@ -50,18 +49,18 @@ exit('test');
 $config['storage']['dev'] = array(
 		// Amazon Web Services Key. Found in the AWS Security Credentials. You can also pass
 		// this value as the first parameter to a service constructor.
-		'key' => '',
+		'key' => 'AKIAIK5NSOMR5QX5B6DQ',
 
 		// Amazon Web Services Secret Key. Found in the AWS Security Credentials. You can also
 		// pass this value as the second parameter to a service constructor.
-		'secret' => '',
+		'secret' => 'S/IjJ/oGxkSTfSOr5KOwtQub+u6PwCii1t3Xoil4',
 
 		// This option allows you to configure a preferred storage type to use for caching by
 		// default. This can be changed later using the set_cache_config() method.
 		//
 		// Valid values are: `apc`, `xcache`, or a file system path such as `./cache` or
 		// `/tmp/cache/`.
-		'default_cache_config' => '',
+		'default_cache_config' => '/tmp/cache/',
 
 		// Determines which Cerificate Authority file to use.
 		//

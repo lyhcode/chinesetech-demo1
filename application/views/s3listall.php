@@ -4,4 +4,5 @@
 	<ul>
 		<li>file1</li>
 	</ul>
+	<pre><?php print_r($result)?><pre>
 </div>
