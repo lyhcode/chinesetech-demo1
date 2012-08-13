@@ -16,9 +16,15 @@
 				<p>Demo functions:</p>
 				<ul>
 					<li><a href="<?php echo site_url('s3service/listall')?>">S3: List all files</a></li>
+					<li><a href="<?php echo site_url('s3service/upload')?>">S3: Upload files</a></li>
 				</ul>
 				<a class="btn btn-primary btn-large" href="#">Learn more</a>
 			</div>
 		</div>
 	</div>
+	<hr class="soften" />
+	<h2>Links</h2>
+	<ul>
+		<li><a href="http://aws.amazon.com/documentation/sdkforphp/" target="_blank">AWS SDK for PHP Documentation</a></li>
+	</ul>
 </div>

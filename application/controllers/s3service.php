@@ -10,15 +10,28 @@ class S3service extends CI_Controller {
 
 	public function listall() {
 		$this->load->spark('amazon-sdk/0.1.7');
-		//print_r($this->load->spark);
 		$s3 = $this->awslib->get_s3();
-		$result = $s3->list_buckets();
+		//$response = $s3->list_buckets();
+		$response = $s3->list_objects('storage1.chinesetech.com.tw');
+		$contents = $response->body->Contents;
+	
+		$result = array();
+		foreach($contents as $object) {
+			$key = $object->Key;
+			array_push($result, "$key");
+		}
 
 		$data = array();
 		$data['result'] = $result;
 		
 		$this->load->view('include/header');
 		$this->load->view('s3listall', $data);
+		$this->load->view('include/footer');
+	}
+
+	public function upload() {
+		$this->load->view('include/header');
+		$this->load->view('s3upload');
 		$this->load->view('include/footer');
 	}
 
