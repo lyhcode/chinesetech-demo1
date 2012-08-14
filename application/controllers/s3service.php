@@ -163,6 +163,28 @@ class S3service extends CI_Controller {
 		if (!$chunks || $chunk == $chunks - 1) {
 			// Strip the temp .part suffix off 
 			rename("{$filePath}.part", $filePath);
+
+			// Upload to S3 bucket
+			$this->load->spark('amazon-sdk/0.1.7');
+			$s3 = $this->awslib->get_s3();
+			$bucket = 'storage1.chinesetech.com.tw';
+			$response = $s3->create_object($bucket, 'uploads/'.$fileName, array(
+			    'fileUpload' => $filePath
+			    //'acl' => AmazonS3::ACL_PUBLIC,
+			    //'contentType' => 'text/plain',
+			    //'storage' => AmazonS3::STORAGE_REDUCED,
+			    //'headers' => array(
+			    //    'Cache-Control'    => 'max-age',
+			    //    'Content-Encoding' => 'gzip',
+			    //    'Content-Language' => 'en-US',
+			    //    'Expires'          => 'Thu, 01 Dec 1994 16:00:00 GMT',
+			    //),
+			  	//'meta' => array(
+			    //    'word'         => 'to your mother',    // x-amz-meta-word
+			    //    'ice-ice-baby' => 'too cold, too cold' // x-amz-meta-ice-ice-baby
+			    //),
+			));
+			file_put_contents($filePath.'.txt', $response);
 		}
 		
 		// Return JSON-RPC response

@@ -23,7 +23,7 @@ $(function() {
 		url : "<?= site_url('s3service/receive') ?>",
 		max_file_size : '100mb',
 		chunk_size : '1mb',
-		unique_names : true,
+		unique_names : false,
 
 		// Resize images on clientside if we can
 		resize : {width : 320, height : 240, quality : 90},
