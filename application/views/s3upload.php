@@ -9,7 +9,7 @@
 				</div>
 			</div>
 			<div class="span6">
-				<button class="btn btn-primary">開始上傳檔案</button>
+				<button type="submit" class="btn btn-primary">開始上傳檔案</button>
 			</div>
 		</div>
 	</form>
@@ -20,7 +20,7 @@ $(function() {
 	$("#uploader").pluploadQueue({
 		// General settings
 		runtimes : 'gears,flash,silverlight,browserplus,html5',
-		url : 'upload.php',
+		url : "<?= site_url('s3service/receive') ?>",
 		max_file_size : '100mb',
 		chunk_size : '1mb',
 		unique_names : true,
@@ -30,7 +30,8 @@ $(function() {
 
 		// Specify what files to browse for
 		filters : [
-			{title : "Video files", extensions : "mp4,ogg,ogv,mov"}
+			{title : "Video files", extensions : "mp4,ogg,ogv,mov"},
+			{title : "Text files", extensions : "txt"}
 		],
 
 		// Flash settings
