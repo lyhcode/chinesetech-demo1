@@ -11,6 +11,7 @@ class S3service extends CI_Controller {
 	public function listall() {
 		$this->load->spark('amazon-sdk/0.1.7');
 		$s3 = $this->awslib->get_s3();
+		$s3->ssl_verification = false;
 		//$response = $s3->list_buckets();
 		$response = $s3->list_objects('storage1.chinesetech.com.tw');
 		$contents = $response->body->Contents;
