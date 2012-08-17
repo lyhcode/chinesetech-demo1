@@ -14,7 +14,7 @@ class S3service extends CI_Controller {
 		//$s3->disable_ssl_verification();
 		$s3->disable_ssl();
 		$s3->enable_debug_mode();
-		$s3->set_proxy('proxy://192.168.255.3:3128');
+		//$s3->set_proxy('proxy://192.168.255.3:3128');
 		//$response = $s3->list_buckets();
 		$response = $s3->list_objects('storage1.chinesetech.com.tw');
 		$contents = $response->body->Contents;
