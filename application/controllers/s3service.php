@@ -11,7 +11,8 @@ class S3service extends CI_Controller {
 	public function listall() {
 		$this->load->spark('amazon-sdk/0.1.7');
 		$s3 = $this->awslib->get_s3();
-		$s3->ssl_verification = false;
+		$s3->disable_ssl_verification();
+		$s3->set_proxy('proxy://192.168.255.3:3128');
 		//$response = $s3->list_buckets();
 		$response = $s3->list_objects('storage1.chinesetech.com.tw');
 		$contents = $response->body->Contents;
@@ -33,6 +34,13 @@ class S3service extends CI_Controller {
 	public function upload() {
 		$this->load->view('include/header');
 		$this->load->view('s3upload');
+		$this->load->view('include/footer');
+	}
+
+	public function playback() {
+		$data = array('url'=>$_GET['object']);
+		$this->load->view('include/header');
+		$this->load->view('s3playback', $data);
 		$this->load->view('include/footer');
 	}
 

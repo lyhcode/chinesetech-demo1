@@ -5,7 +5,12 @@
 	<h2>S3: List all files</h2>
 	<ul>
 		<?php foreach($result as $key): ?>
-		<li><?php echo $key ?></li>
+		<li>
+			<?php echo $key ?>
+			<?php if(in_array(substr($key, -4), array('.ogg', '.mov', '.mp4', '.ogv'))): ?>
+				(<a href="<?php echo site_url('/s3service/playback').'?object='.urlencode($key) ?>">playback</a>)
+			<?php endif; ?>
+		</li>
 		<?php endforeach ?>
 	</ul>
 </div>
