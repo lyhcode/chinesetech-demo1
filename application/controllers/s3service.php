@@ -12,6 +12,7 @@ class S3service extends CI_Controller {
 		$this->load->spark('amazon-sdk/0.1.7');
 		$s3 = $this->awslib->get_s3();
 		//$s3->disable_ssl_verification();
+		$se->disable_ssl();
 		$s3->set_proxy('proxy://192.168.255.3:3128');
 		//$response = $s3->list_buckets();
 		$response = $s3->list_objects('storage1.chinesetech.com.tw');
