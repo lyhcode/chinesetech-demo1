@@ -2,6 +2,20 @@
 
 class S3service extends CI_Controller {
 
+	private function getS3() {
+		$this->load->spark('amazon-sdk/0.1.7');
+		$s3 = $this->awslib->get_s3();
+		//$s3->disable_ssl_verification();
+		//$s3->disable_ssl();
+		//$s3->enable_debug_mode();
+		//$s3->set_proxy('proxy://192.168.255.3:3128');
+		return $s3;
+	}
+
+	private function getBucketName() {
+		return 'storage1.chinesetech.com.tw';
+	}
+
 	public function index() {
 		$this->load->view('include/header');
 		$this->load->view('frontpage');
@@ -9,14 +23,8 @@ class S3service extends CI_Controller {
 	}
 
 	public function listall() {
-		$this->load->spark('amazon-sdk/0.1.7');
-		$s3 = $this->awslib->get_s3();
-		//$s3->disable_ssl_verification();
-		//$s3->disable_ssl();
-		//$s3->enable_debug_mode();
-		//$s3->set_proxy('proxy://192.168.255.3:3128');
-		//$response = $s3->list_buckets();
-		$response = $s3->list_objects('storage1.chinesetech.com.tw');
+		$s3 = $this->getS3();
+		$response = $s3->list_objects($this->getBucketName());
 		$contents = $response->body->Contents;
 	
 		$result = array();
@@ -40,7 +48,19 @@ class S3service extends CI_Controller {
 	}
 
 	public function playback() {
-		$data = array('url'=>$_GET['object']);
+		$object = $_GET['object'];
+		$s3 = $this->getS3();
+		$object_url = $s3->get_object_url($this->getBucketName(), $object, '30 minutes', array(
+			'response' => array(
+				'content-type'     => 'text/plain',
+				'content-language' => 'en-US',
+				'expires'          => gmdate(DATE_RFC2822, strtotime('1 January 1980'))
+			)
+		));
+		$data = array(
+			'object' => $object,
+			'object_url' => $object_url
+		);
 		$this->load->view('include/header');
 		$this->load->view('s3playback', $data);
 		$this->load->view('include/footer');
@@ -176,10 +196,8 @@ class S3service extends CI_Controller {
 			rename("{$filePath}.part", $filePath);
 
 			// Upload to S3 bucket
-			$this->load->spark('amazon-sdk/0.1.7');
-			$s3 = $this->awslib->get_s3();
-			$bucket = 'storage1.chinesetech.com.tw';
-			$response = $s3->create_object($bucket, 'uploads/'.$fileName, array(
+			$s3 = $this->getS3();
+			$response = $s3->create_object($this->getBucketName(), 'uploads/'.$fileName, array(
 			    'fileUpload' => $filePath
 			    //'acl' => AmazonS3::ACL_PUBLIC,
 			    //'contentType' => 'text/plain',
