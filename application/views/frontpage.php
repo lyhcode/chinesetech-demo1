@@ -6,7 +6,7 @@
 				preload="auto" width="100%" height="320" poster="assets/img/colorbars-small.png"
 				data-setup="{}">
 				<source type="video/ogg" src="http://storage1.chinesetech.com.tw.s3.amazonaws.com/demo/ed_1024.ogv" >
-				<source type="video/h264" src="http://storage1.chinesetech.com.tw.s3.amazonaws.com/demo/ed_hd_512kb.mp4" >
+				<source type="video/mp4" src="http://storage1.chinesetech.com.tw.s3.amazonaws.com/demo/ed_hd_512kb.mp4" >
 			</video>
 		</div>
 		<div class="span7">
