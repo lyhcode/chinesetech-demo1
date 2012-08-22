@@ -58,7 +58,7 @@ class S3service extends CI_Controller {
 			)
 		));
 
-		if (substr($object, -4)=='.ogg') {
+		if (substr($object, -4)=='.ogg' || substr($object, -4)=='.ogv') {
 			$object_type = 'video/ogg';
 		}
 		else if (substr($object, -4)=='.mp4') {
