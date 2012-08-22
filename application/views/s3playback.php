@@ -7,7 +7,7 @@
 			<video id="my_video_1" class="video-js vjs-default-skin" controls
 				preload="auto" width="100%" height="320" poster="<?php echo base_url('assets/img/colorbars-small.png') ?>"
 				data-setup="{}">
-				<source type="video/ogg" src="<?php echo $object_url ?>">
+				<source type="<?php echo $object_type ?>" src="<?php echo $object_url ?>">
 			</video>
 		</div>
 		<div class="span7">

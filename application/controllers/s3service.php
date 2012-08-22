@@ -57,8 +57,17 @@ class S3service extends CI_Controller {
 				'expires'          => gmdate(DATE_RFC2822, strtotime('1 January 1980'))
 			)
 		));
+
+		if (substr($object, -4)=='.ogg') {
+			$object_type = 'video/ogg';
+		}
+		else if (substr($object, -4)=='.mp4') {
+			$object_type = 'video/h264';
+		}
+
 		$data = array(
 			'object' => $object,
+			'object_type' => $object_type,
 			'object_url' => $object_url
 		);
 		$this->load->view('include/header');
