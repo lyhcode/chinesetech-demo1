@@ -3,9 +3,11 @@
 	<div class="row">
 		<div class="span5">
 			<video id="my_video_1" class="video-js vjs-default-skin" controls
-				preload="auto" width="100%" height="320" poster="assets/img/colorbars-small.png"
+				preload="auto" width="100%" height="320" poster="<?php echo base_url('assets/img/colorbars-small.png')?>"
 				data-setup="{}">
+<!--
 				<source type="video/ogg" src="http://storage1.chinesetech.com.tw.s3.amazonaws.com/demo/ed_1024.ogv" >
+-->
 				<source type="video/mp4" src="http://storage1.chinesetech.com.tw.s3.amazonaws.com/demo/ed_hd_512kb.mp4" >
 			</video>
 		</div>

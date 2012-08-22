@@ -62,7 +62,7 @@ class S3service extends CI_Controller {
 			$object_type = 'video/ogg';
 		}
 		else if (substr($object, -4)=='.mp4') {
-			$object_type = 'video/h264';
+			$object_type = 'video/mp4';
 		}
 
 		$data = array(
