@@ -20,8 +20,11 @@
 	<script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
 	<script src="<?= base_url('assets/js/custom.js') ?>"></script>
 
-	<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
-	<script src="http://vjs.zencdn.net/c/video.js"></script>
+	<!--<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+	<script src="http://vjs.zencdn.net/c/video.js"></script>-->
+
+	<script src="<?= base_url('assets/mediaelement/mediaelement-and-player.min.js') ?>"></script>
+	<link rel="stylesheet" href="<?= base_url('assets/mediaelement/mediaelementplayer.css') ?>" /></code>
 
 	<!-- Load Queue widget CSS and jQuery -->
 	<link href="<?= base_url('plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css')?>" rel="stylesheet">
