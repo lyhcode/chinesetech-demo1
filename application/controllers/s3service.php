@@ -52,8 +52,6 @@ class S3service extends CI_Controller {
 		$s3 = $this->getS3();
 		$object_url = $s3->get_object_url($this->getBucketName(), $object, '30 minutes', array(
 			'response' => array(
-				'content-type'     => 'text/plain',
-				'content-language' => 'en-US',
 				'expires'          => gmdate(DATE_RFC2822, strtotime('1 January 1980'))
 			)
 		));
