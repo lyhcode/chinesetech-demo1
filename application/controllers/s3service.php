@@ -56,6 +56,19 @@ class S3service extends CI_Controller {
 			)
 		));
 
+		$object_type = $this->getContentType($object);
+
+		$data = array(
+			'object' => $object,
+			'object_type' => $object_type,
+			'object_url' => $object_url
+		);
+		$this->load->view('include/header');
+		$this->load->view('s3playback', $data);
+		$this->load->view('include/footer');
+	}
+
+	private function getContentType($object) {
 		$object_type = '';
 		if (substr($object, -4)=='.ogg' || substr($object, -4)=='.ogv') {
 			$object_type = 'video/ogg';
@@ -66,15 +79,10 @@ class S3service extends CI_Controller {
 		else if (substr($object, -4)=='.mov') {
 			$object_type = 'video/h264';
 		}
-
-		$data = array(
-			'object' => $object,
-			'object_type' => $object_type,
-			'object_url' => $object_url
-		);
-		$this->load->view('include/header');
-		$this->load->view('s3playback', $data);
-		$this->load->view('include/footer');
+		else if (substr($object, -4)=='.txt') {
+			$object_type = 'plain/text';
+		}
+		return $object_type;
 	}
 
 	public function receive()
@@ -209,9 +217,9 @@ class S3service extends CI_Controller {
 			// Upload to S3 bucket
 			$s3 = $this->getS3();
 			$response = $s3->create_object($this->getBucketName(), 'uploads/'.$fileName, array(
-			    'fileUpload' => $filePath
+			    'fileUpload' => $filePath,
 			    //'acl' => AmazonS3::ACL_PUBLIC,
-			    //'contentType' => 'text/plain',
+			    'contentType' => $this->getContentType($fileName),
 			    //'storage' => AmazonS3::STORAGE_REDUCED,
 			    //'headers' => array(
 			    //    'Cache-Control'    => 'max-age',
