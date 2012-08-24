@@ -2,11 +2,16 @@
 	<pre>location: application/views/frontpage.php</pre>
 	<div class="row">
 		<div class="span5">
-			<video id="my_video_1" class="video-js vjs-default-skin" controls
-				preload="auto" width="100%" height="320" poster="<?php echo base_url('assets/img/colorbars-small.png')?>"
-				data-setup="{}">
+			<video width="320" height="240" controls="controls" preload="none"
+				poster="<?php echo base_url('assets/img/colorbars-small.png')?>">
 				<source type="video/ogg" src="http://storage1.chinesetech.com.tw.s3.amazonaws.com/demo/ed_1024.ogv" >
 				<source type="video/mp4" src="http://storage1.chinesetech.com.tw.s3.amazonaws.com/demo/ed_hd_512kb.mp4" >
+				<object width="320" height="240" type="application/x-shockwave-flash" data="<?php echo base_url('assets/mediaelement/flashmediaelement.swf')?>">
+					<param name="movie" value="<?php echo base_url('assets/mediaelement/flashmediaelement.swf')?>" />
+					<param name="flashvars" value="controls=true&file=<?php echo urlencode('http://storage1.chinesetech.com.tw.s3.amazonaws.com/demo/ed_hd_512kb.mp4') ?>" />
+					<!-- Image as a last resort -->
+					<img src="<?php echo base_url('assets/img/colorbars-small.png') ?>" width="320" height="240" title="No video playback capabilities" />
+				</object>
 			</video>
 		</div>
 		<div class="span7">
